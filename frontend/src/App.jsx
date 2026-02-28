@@ -8,6 +8,7 @@ import RegisterPage from './pages/RegisterPage';
 import Dashboard from './pages/Dashboard';
 import CodeEditorPage from './pages/CodeEditorPage';
 import HistoryPage from './pages/HistoryPage';
+import DailyChallenge from './pages/DailyChallenge';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -86,6 +87,15 @@ function AppContent() {
             element={
               <ProtectedRoute>
                 <HistoryPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/challenge"
+            element={
+              <ProtectedRoute>
+                <DailyChallenge />
               </ProtectedRoute>
             }
           />

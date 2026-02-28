@@ -130,7 +130,13 @@ router.get('/', protect, async (req, res) => {
 
     res.json({
       success: true,
-      data: submissions,
+      data: {
+        submissions,
+        overallStats: {
+          ...overallStats,
+          streak: user.streakDays || 0
+        },
+      },
       pagination: {
         page,
         limit,

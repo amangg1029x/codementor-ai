@@ -36,7 +36,23 @@ const userSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  streakDays: {
+    type: Number,
+    default: 0
+  },
+  lastChallengeDate: {
+    type: Date
+  },
+  completedChallenges: [{
+    challengeId: mongoose.Schema.Types.ObjectId,
+    completedAt: Date,
+    score: Number
+  }],
+  weakAreas: [{
+    category: String,
+    averageScore: Number
+  }]
 });
 
 // Hash password before saving

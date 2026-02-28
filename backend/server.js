@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
+const challengeRoutes = require('./routes/challenges.js');
 const app = express();
 
 // Middleware
@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/submissions', require('./routes/submissions'));
+app.use('/api/challenges', challengeRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

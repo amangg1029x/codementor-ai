@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Editor from '@monaco-editor/react';
-import { Play, Loader, CheckCircle, AlertCircle, X } from 'lucide-react';
+import { Play, Loader, CheckCircle, AlertCircle, X, Loader2 } from 'lucide-react';
 import { submissionAPI } from '../services/api';
 
 const CodeEditorPage = () => {
@@ -120,10 +120,11 @@ const CodeEditorPage = () => {
                     className="ml-auto btn-primary flex items-center space-x-2 disabled:opacity-50"
                   >
                     {loading ? (
-                      <>
-                        <Loader className="w-4 h-4 animate-spin" />
+                      <div className="flex flex-col items-center gap-2">
+                        <Loader2 className="w-4 h-4 animate-spin" />
                         <span>Evaluating...</span>
-                      </>
+                        <span className="text-xs text-gray-500">This takes ~5 seconds</span>
+                      </div>
                     ) : (
                       <>
                         <Play className="w-4 h-4" />
@@ -156,9 +157,20 @@ const CodeEditorPage = () => {
 
             {/* Error Display */}
             {error && (
-              <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start space-x-3">
-                <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-red-600">{error}</p>
+              <div className="mb-4 p-4 bg-red-50 border-l-4 border-red-500 rounded-lg">
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-semibold text-red-900 mb-1">Evaluation Failed</p>
+                    <p className="text-sm text-red-800">{error}</p>
+                    <button 
+                      onClick={() => setError('')}
+                      className="text-xs text-red-600 hover:text-red-800 mt-2 underline"
+                    >
+                      Dismiss
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
           </div>

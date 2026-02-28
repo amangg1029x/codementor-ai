@@ -7,7 +7,9 @@ import {
   Award,
   Code2,
   BarChart3,
-  AlertTriangle
+  AlertTriangle,
+  Calendar,
+  Flame
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 import { submissionAPI } from '../services/api';
@@ -59,20 +61,48 @@ const Dashboard = () => {
   // No submissions yet
   if (!stats || stats.totalSubmissions === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
-            <Code2 className="w-20 h-20 text-gray-400 mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Welcome to Your Dashboard!
-            </h2>
-            <p className="text-xl text-gray-600 mb-8">
-              You haven't submitted any code yet. Let's get started!
-            </p>
-            <Link to="/editor" className="btn-primary inline-flex items-center space-x-2">
-              <Code2 className="w-5 h-5" />
-              <span>Submit Your First Code</span>
-            </Link>
+      <div className="card text-center py-16">
+        <div className="w-20 h-20 bg-gradient-to-br from-primary-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <Code2 className="w-10 h-10 text-white" />
+        </div>
+        <h3 className="text-2xl font-bold text-gray-900 mb-3">
+          Welcome to CodeMentor AI! 👋
+        </h3>
+        <p className="text-gray-600 mb-2 max-w-md mx-auto">
+          You haven't submitted any code yet. Let's start your coding journey!
+        </p>
+        <p className="text-sm text-gray-500 mb-8">
+          Submit your first code to get AI-powered evaluation with detailed feedback.
+        </p>
+        <Link to={'/editor'}
+          className="btn-primary inline-flex items-center gap-2"
+        >
+          <Code2 className="w-5 h-5" />
+          Write Your First Code
+        </Link>
+        
+        {/* Add quick tips */}
+        <div className="mt-12 grid grid-cols-3 gap-6 max-w-2xl mx-auto text-left">
+          <div className="flex flex-col items-center text-center">
+            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+              <span className="text-2xl">📊</span>
+            </div>
+            <h4 className="font-semibold text-gray-900 mb-1">Multi-Dimensional</h4>
+            <p className="text-xs text-gray-600">Get scores for quality, security, performance & more</p>
+          </div>
+          <div className="flex flex-col items-center text-center">
+            <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-3">
+              <span className="text-2xl">🎯</span>
+            </div>
+            <h4 className="font-semibold text-gray-900 mb-1">Static Analysis</h4>
+            <p className="text-xs text-gray-600">Catch issues before AI even runs</p>
+          </div>
+          <div className="flex flex-col items-center text-center">
+            <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-3">
+              <span className="text-2xl">📈</span>
+            </div>
+            <h4 className="font-semibold text-gray-900 mb-1">Track Progress</h4>
+            <p className="text-xs text-gray-600">See your improvement over time</p>
           </div>
         </div>
       </div>
@@ -189,6 +219,34 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+
+        {/* Daily Challenge Card */}
+<div className="card bg-gradient-to-br from-orange-50 to-yellow-50 border-orange-200">
+  <div className="flex items-start justify-between">
+    <div className="flex-1">
+      <div className="flex items-center gap-2 mb-2">
+        <Calendar className="w-5 h-5 text-orange-600" />
+        <h3 className="font-bold text-gray-900">Daily Challenge</h3>
+      </div>
+      <p className="text-sm text-gray-700 mb-4">
+        Keep your coding skills sharp with a new challenge every day
+      </p>
+      <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-2">
+          <Flame className="w-5 h-5 text-orange-600" />
+          <span className="font-bold text-orange-600">{stats?.overallStats?.streak || 0} day streak</span>
+        </div>
+      </div>
+      <Link to={'/challenge'}
+        className="btn-primary"
+      >
+        Today's Challenge
+      </Link>
+    </div>
+    <div className="text-6xl">🎯</div>
+  </div>
+  <br/>
+</div>
 
         {/* Charts Row */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
