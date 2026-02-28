@@ -9,7 +9,7 @@ import {
   BarChart3,
   AlertTriangle,
   Calendar,
-  Flame
+  Flame,
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 import { submissionAPI } from '../services/api';
